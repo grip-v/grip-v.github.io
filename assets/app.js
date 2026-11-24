@@ -107,14 +107,7 @@
   D.examples.forEach(function (ex, i) { if (ex.cat === "tangled_braid") start = i; });
   select(start);
   player.pause();
-
-  /* Families */
-  var fams = document.getElementById("fams");
-  D.families.forEach(function (f) {
-    var c = el("div", { class: "fam", style: "border-left-color:" + FAM[f].c });
-    c.innerHTML = "<h3>" + esc(f) + ' <span style="color:var(--ink-3);font-weight:500">· ' + SUBS[f] + "</span></h3><p>" + esc(FAM[f].d) + "</p>";
-    fams.appendChild(c);
-  });
+  window.GRIPV_select = select;
 
   /* Leaderboard */
   var cols = [

@@ -20,6 +20,7 @@
     <a class="brand" href="#top">GRIP<span>-V</span></a>
     <ul>
       <li><a href="#abstract">Abstract</a></li>
+      <li><a href="#taxonomy">Taxonomy</a></li>
       <li><a href="#explore">Try it</a></li>
       <li><a href="#ladder">Ladder</a></li>
       <li><a href="#benchmark">Benchmark</a></li>
@@ -72,6 +73,17 @@
   <div class="wrap abstract">
     <p class="eyebrow">Abstract</p>
     <p>Robots and other physical-AI systems increasingly rely on vision-language models (VLMs) to perceive a scene and predict how it will evolve. Yet many questions in video benchmarks can be answered from a single frame, so a high score does not show that a model followed the scene over time. We introduce <b>GRIP-V</b>, the video version of GRIP: 40 procedurally generated sub-benchmarks in seven reasoning families, from mechanics and fluids to occlusion, agents, and rule tracking, with 2,500 clips per sub-benchmark and ten questions per clip (1 million questions). Every answer is computed from the simulated scene state and checked by a validator. Questions climb a five-rung ladder from observation through relations, measurement, and multi-step integration to counterfactual reasoning, and 81.1% are flagged as requiring motion. We evaluated eleven open-weight VLMs on a 100,000-question subset. The best model answers 55.6% of the questions, against a constant-answer baseline of 28.1%. Shown only the final frame, three of five tested models lose 14&ndash;15 points of baseline-adjusted accuracy, so they do use motion. Accuracy, however, falls by up to 37 points from the first rung to the last, eight of eleven models are within 6 points of the baseline on counterfactuals, and no model reliably detects injected rule violations. Current VLMs can follow how a scene unfolds, but not yet predict how it would change under an intervention or notice when it breaks the rules.</p>
+  </div>
+</section>
+
+<section id="taxonomy">
+  <div class="wrap">
+    <p class="eyebrow">Taxonomy</p>
+    <h2>40 sub-benchmarks in seven reasoning families</h2>
+    <div class="taxo">
+      <div class="wheel" id="wheel"></div>
+      <aside class="winfo" id="wheelinfo" aria-live="polite"></aside>
+    </div>
   </div>
 </section>
 
@@ -139,8 +151,6 @@
       <div class="card"><h3>Validate</h3><p>A validator rebuilds all 100,000 clips and re-derives all 1M answers: zero mismatches. It flags all 120 answers corrupted on purpose.</p></div>
     </div>
 
-    <h3 style="margin:40px 0 14px">Seven reasoning families</h3>
-    <div class="fams" id="fams"></div>
   </div>
 </section>
 
@@ -239,5 +249,7 @@
 
 <script src="assets/data.js"></script>
 <script src="assets/app.js"></script>
+<script src="assets/wheel-data.js"></script>
+<script src="assets/wheel.js"></script>
 </body>
 </html>
