@@ -39,7 +39,7 @@ img, video { max-width: 100%; display: block; }
 .badge { display: inline-block; font-size: 13px; font-weight: 600; color: var(--accent); background: #eef2fd; border-radius: 999px; padding: 4px 12px; margin-bottom: 18px; }
 .hero h1 { font-family: var(--serif); font-weight: 700; font-size: clamp(34px, 5.4vw, 60px); line-height: 1.08; letter-spacing: -.02em; margin: 0 auto 14px; max-width: 17ch; }
 .hero h1 em { color: var(--accent); font-style: italic; }
-.hero .sub { font-size: clamp(17px, 2vw, 21px); color: var(--ink-2); max-width: 44ch; margin: 0 auto 26px; }
+.hero .sub { font-size: clamp(17px, 2vw, 21px); color: var(--ink-2); max-width: 44ch; margin: 0 auto 18px; }
 .authors { max-width: 900px; margin: 0 auto 8px; font-size: 16px; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 16px; }
 .authors span { white-space: nowrap; }
 .authors sup, .affils sup { font-size: 11px; color: var(--accent); margin-left: 1px; font-weight: 600; }
@@ -172,8 +172,8 @@ footer { margin-top: 80px; border-top: 1px solid var(--line); padding: 28px 0 40
 footer .wrap { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
 
 /* Taxonomy wheel */
-.taxo { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 32px; align-items: center; }
-.wheel svg { width: 100%; height: auto; display: block; max-width: 640px; margin: 0 auto; }
+.taxo { display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 300px); justify-content: center; gap: 28px; align-items: center; margin: 4px auto 30px; text-align: left; }
+.wheel svg { width: 100%; height: auto; display: block; max-width: 420px; margin: 0 auto; }
 .wf, .ws { cursor: pointer; transition: opacity .18s, filter .18s; outline: none; }
 .wf:focus-visible, .ws:focus-visible { stroke: var(--ink); stroke-width: 3; }
 svg.dim .wf:not(.on), svg.dim .ws:not(.on) { opacity: .28; }
@@ -184,12 +184,12 @@ svg.dim .wf:not(.on), svg.dim .ws:not(.on) { opacity: .28; }
 .wbot { font: 800 22px var(--sans); fill: #1b1e25; letter-spacing: .02em; }
 .weyes path { transition: transform .12s; transform-box: fill-box; transform-origin: center; }
 .weyes.blink path { transform: scaleY(.15); }
-.winfo { border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; min-height: 260px; background: #fff; }
-.winfo h3 { font-family: var(--serif); font-size: 26px; margin: 0 0 8px; }
+.winfo { border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; min-height: 220px; background: #fff; font-size: 15px; }
+.winfo h3 { font-family: var(--serif); font-size: 22px; margin: 0 0 6px; }
 .winfo p { margin: 0 0 12px; color: var(--ink-2); }
 .winfo .wk { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
 .winfo .hint, .winfo .wmeta { font-size: 14px; color: var(--ink-3); }
-.wlist { margin: 0; padding-left: 18px; color: var(--ink-2); columns: 2; font-size: 14.5px; }
+.wlist { margin: 0; padding-left: 18px; color: var(--ink-2); columns: 2; font-size: 13.5px; }
 .vdot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #b3261e; vertical-align: 1px; }
 .vtag { font-size: 14px; }
 .wtry { margin-top: 4px; cursor: pointer; font: inherit; font-weight: 600; font-size: 14px; }

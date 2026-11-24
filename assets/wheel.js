@@ -73,32 +73,28 @@
     a = a1;
   });
 
-  /* Robot */
+  /* Robot: the paper's GRIP-V robot (eyes removed from the image), with live eyes on top */
   s("circle", { r: R0, fill: "#fff" }, svg);
-  s("circle", { r: R0 - 8, fill: "#0b0d12" }, svg);
-  var bot = s("g", { "pointer-events": "none" }, svg);
-  s("path", { d: "M-78,138 C-78,72 -46,52 0,52 C46,52 78,72 78,138 Z", fill: "#eef0f4" }, bot);
-  s("path", { d: "M-40,62 C-24,56 24,56 40,62 L32,92 L-32,92 Z", fill: "#d9dde4" }, bot);
-  var lab = s("text", { x: 0, y: 110, "text-anchor": "middle", class: "wbot" }, bot); lab.textContent = "GRIP-V";
-  s("rect", { x: -14, y: 30, width: 28, height: 26, rx: 6, fill: "#c9ced7" }, bot);
-  var head = s("g", {}, bot);
-  s("circle", { cx: -84, cy: -36, r: 24, fill: "#c9ced7" }, head);
-  s("circle", { cx: 84, cy: -36, r: 24, fill: "#c9ced7" }, head);
-  s("circle", { cx: -84, cy: -36, r: 13, fill: "none", stroke: "#4fa3ff", "stroke-width": 4 }, head);
-  s("circle", { cx: 84, cy: -36, r: 13, fill: "none", stroke: "#4fa3ff", "stroke-width": 4 }, head);
-  s("rect", { x: -78, y: -102, width: 156, height: 138, rx: 62, fill: "#f4f5f8" }, head);
-  s("rect", { x: -64, y: -86, width: 128, height: 100, rx: 46, fill: "#07080c" }, head);
-  var eyes = s("g", { class: "weyes" }, head);
-  var eyeL = s("path", { d: "M-42,-30 Q-28,-50 -14,-30", fill: "none", stroke: "#5ab8ff", "stroke-width": 9, "stroke-linecap": "round" }, eyes);
-  var eyeR = s("path", { d: "M14,-30 Q28,-50 42,-30", fill: "none", stroke: "#5ab8ff", "stroke-width": 9, "stroke-linecap": "round" }, eyes);
-  s("ellipse", { cx: -18, cy: -72, rx: 26, ry: 7, fill: "#fff", opacity: 0.12 }, head);
+  var defs = s("defs", {}, svg);
+  var cp = s("clipPath", { id: "hubclip" }, defs); s("circle", { r: R0 - 8 }, cp);
+  var glow = s("filter", { id: "eyeglow", x: "-60%", y: "-60%", width: "220%", height: "220%" }, defs);
+  s("feGaussianBlur", { stdDeviation: "3.2", result: "b" }, glow);
+  var mg = s("feMerge", {}, glow); s("feMergeNode", { in: "b" }, mg); s("feMergeNode", { in: "b" }, mg); s("feMergeNode", { in: "SourceGraphic" }, mg);
+  var hub = s("g", { "clip-path": "url(#hubclip)", "pointer-events": "none" }, svg);
+  s("rect", { x: -R0, y: -R0, width: 2 * R0, height: 2 * R0, fill: "#000" }, hub);
+  s("image", { href: "assets/robot.jpg", x: -(R0 - 8), y: -(R0 - 8), width: 2 * (R0 - 8), height: 2 * (R0 - 8), preserveAspectRatio: "xMidYMid slice" }, hub);
+  var eyes = s("g", { class: "weyes" }, hub);
+  [["M-47.5,-39.4 Q-35.0,-60.0 -22.2,-42.0"], ["M7.0,-49.6 Q20.4,-72.6 33.9,-51.7"]].forEach(function (d) {
+    var e = s("g", {}, eyes);
+    s("path", { d: d[0], fill: "none", stroke: "#1f7bff", "stroke-width": 9, "stroke-linecap": "round", filter: "url(#eyeglow)", opacity: 0.95 }, e);
+    s("path", { d: d[0], fill: "none", stroke: "#9fdcff", "stroke-width": 5, "stroke-linecap": "round" }, e);
+  });
 
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var tx = 0, ty = 0, cx = 0, cy = 0, raf = null;
   function tick() {
     cx += (tx - cx) * 0.18; cy += (ty - cy) * 0.18;
     eyes.setAttribute("transform", "translate(" + cx.toFixed(2) + "," + cy.toFixed(2) + ")");
-    head.setAttribute("transform", "translate(" + (cx * 0.25).toFixed(2) + "," + (cy * 0.2).toFixed(2) + ")");
     raf = (Math.abs(tx - cx) > 0.05 || Math.abs(ty - cy) > 0.05) ? requestAnimationFrame(tick) : null;
   }
   function look(clientX, clientY) {
@@ -106,7 +102,7 @@
     var ox = r.left + r.width / 2, oy = r.top + r.height / 2;
     var dx = clientX - ox, dy = clientY - oy, d = Math.hypot(dx, dy) || 1;
     var k = Math.min(1, d / 300);
-    tx = dx / d * 16 * k; ty = dy / d * 11 * k;
+    tx = dx / d * 9 * k; ty = dy / d * 7 * k;
     if (!raf) raf = requestAnimationFrame(tick);
   }
   if (!reduce) {
