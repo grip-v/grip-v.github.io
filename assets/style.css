@@ -194,6 +194,13 @@ svg.dim .wf:not(.on), svg.dim .ws:not(.on) { opacity: .28; }
 .vtag { font-size: 14px; }
 .wtry { margin-top: 4px; cursor: pointer; font: inherit; font-weight: 600; font-size: 14px; }
 
+/* Robot beside the abstract */
+.abstract { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 340px); gap: 40px; align-items: center; }
+.abs-robot { margin: 0; }
+.abs-robot svg { width: 100%; height: auto; display: block; border-radius: 22px; background: #000; }
+.reyes path { transform-box: fill-box; transform-origin: center; transition: transform .12s; }
+.reyes.blink path { transform: scaleY(.15); }
+
 @media (max-width: 920px) {
   .teaser { grid-template-columns: repeat(2, 1fr); }
   .stats { grid-template-columns: repeat(3, 1fr); }
@@ -201,7 +208,8 @@ svg.dim .wf:not(.on), svg.dim .ws:not(.on) { opacity: .28; }
   .stat:nth-child(-n+3) { border-bottom: 1px solid var(--line); }
   .cards, .pipe { grid-template-columns: 1fr 1fr; }
   .ladder { grid-template-columns: 1fr 1fr; }
-  .explorer, .two, .taxo { grid-template-columns: minmax(0, 1fr); }
+  .explorer, .two, .taxo, .abstract { grid-template-columns: minmax(0, 1fr); }
+  .abs-robot { max-width: 300px; margin: 0 auto; }
   .player { position: static; }
 }
 @media (max-width: 560px) {
