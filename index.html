@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GRIP-V: Watch, Don't Glance</title>
+<meta name="description" content="GRIP-V: a procedurally generated video benchmark for temporal geometric and physical reasoning. 40 sub-benchmarks, 100,000 clips, 1 million questions with ground truth computed from the simulated scene.">
+<meta property="og:title" content="GRIP-V: Watch, Don't Glance">
+<meta property="og:description" content="A procedurally generated video benchmark for temporal geometric and physical reasoning in vision-language models.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,700;1,8..60,600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">GRIP<span>-V</span></a>
+    <ul>
+      <li><a href="#abstract">Abstract</a></li>
+      <li><a href="#explore">Try it</a></li>
+      <li><a href="#ladder">Ladder</a></li>
+      <li><a href="#benchmark">Benchmark</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#controls">Motion</a></li>
+      <li><a href="#citation">Citation</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="badge">Under review</div>
+    <h1>Watch, <em>Don't</em> Glance</h1>
+    <p class="sub">A procedurally generated video benchmark for temporal geometric and physical reasoning</p>
+    <div class="authors">
+      <span>Bilal Jawaid</span><span>Hamza Hanif</span><span>Muhammad Maaz Uddin</span><span>Anas Zafar</span><span>Inad Alqurashi</span><span>Aizan Zafar</span><span>Osama Farooqui</span><span>Sheheryar Khan</span><span>Ferhat Sadak</span><span>Shaina Raza</span><span>Rizwan Qureshi</span>
+    </div>
+    <div class="buttons">
+      <span class="btn soon" title="Available after review">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+        Paper <small>soon</small></span>
+      <span class="btn soon" title="Available after review">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/><path d="M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></svg>
+        Dataset <small>soon</small></span>
+      <span class="btn soon" title="Available after review">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+        Code <small>soon</small></span>
+      <a class="btn ghost" href="https://arxiv.org/abs/2610.16170">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        GRIP (image benchmark)</a>
+    </div>
+
+    <div class="teaser" id="teaser"></div>
+    <p class="caption">One clip from each reasoning family (plus the braid). Every clip is drawn from a simulated scene state, and every answer is computed from that state. Click a clip to try its questions.</p>
+
+    <div class="stats">
+      <div class="stat"><b>40</b><span>sub-benchmarks</span></div>
+      <div class="stat"><b>7</b><span>reasoning families</span></div>
+      <div class="stat"><b>100K</b><span>clips</span></div>
+      <div class="stat"><b>1M</b><span>questions</span></div>
+      <div class="stat"><b>185</b><span>scenario variants</span></div>
+      <div class="stat"><b>0</b><span>answer mismatches</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="abstract">
+  <div class="wrap abstract">
+    <p class="eyebrow">Abstract</p>
+    <p>Robots and other physical-AI systems increasingly rely on vision-language models (VLMs) to perceive a scene and predict how it will evolve. Yet many questions in video benchmarks can be answered from a single frame, so a high score does not show that a model followed the scene over time. We introduce <b>GRIP-V</b>, the video version of GRIP: 40 procedurally generated sub-benchmarks in seven reasoning families, from mechanics and fluids to occlusion, agents, and rule tracking, with 2,500 clips per sub-benchmark and ten questions per clip (1 million questions). Every answer is computed from the simulated scene state and checked by a validator. Questions climb a five-rung ladder from observation through relations, measurement, and multi-step integration to counterfactual reasoning, and 81.1% are flagged as requiring motion. We evaluated eleven open-weight VLMs on a 100,000-question subset. The best model answers 55.6% of the questions, against a constant-answer baseline of 28.1%. Shown only the final frame, three of five tested models lose 14&ndash;15 points of baseline-adjusted accuracy, so they do use motion. Accuracy, however, falls by up to 37 points from the first rung to the last, eight of eleven models are within 6 points of the baseline on counterfactuals, and no model reliably detects injected rule violations. Current VLMs can follow how a scene unfolds, but not yet predict how it would change under an intervention or notice when it breaks the rules.</p>
+  </div>
+</section>
+
+<section id="findings">
+  <div class="wrap">
+    <p class="eyebrow">Key findings</p>
+    <h2>Models follow the scene, but cannot yet predict it</h2>
+    <div class="cards">
+      <div class="card"><div class="big">55.6%</div><p>Best model accuracy (Qwen3.6-27B), against a constant-answer baseline of 28.1%. Humans answer 91.2% of a 7,720-question subset.</p></div>
+      <div class="card"><div class="big">&minus;14.7</div><p>Points of adjusted accuracy lost by the strongest models when shown only the final frame: they do use motion.</p></div>
+      <div class="card"><div class="big">8 / 11</div><p>Models within 6 points of the baseline on counterfactual (L5) questions.</p></div>
+      <div class="card"><div class="big">&#x2717;</div><p>No model reliably detects rule violations injected into chess, flooding, and symmetry clips.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="explore">
+  <div class="wrap">
+    <p class="eyebrow">Try it yourself</p>
+    <h2>Watch a clip, then answer its questions</h2>
+    <p class="lead">Each clip comes with ten multiple-choice questions spread over the five rungs. Pick an answer to check it against the ground truth computed from the scene. Most questions cannot be answered from any single frame.</p>
+    <div class="picker" id="picker"></div>
+    <div class="explorer">
+      <div class="player">
+        <video id="player" muted playsinline controls loop preload="metadata"></video>
+        <div class="meta">
+          <span><b id="clipname"></b> &middot; <span id="clipfam"></span></span>
+          <span class="speed" id="speed">
+            <button data-r="0.5">0.5&times;</button><button data-r="1" aria-pressed="true">1&times;</button>
+          </span>
+        </div>
+      </div>
+      <div>
+        <p class="score" id="score"></p>
+        <div class="qlist" id="qlist"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ladder">
+  <div class="wrap">
+    <p class="eyebrow">The question ladder</p>
+    <h2>Five rungs, from seeing to imagining</h2>
+    <p class="lead">Every clip asks questions on five rungs of increasing depth. The examples below all come from the same <i>tangled braid</i> clip.</p>
+    <div class="ladder">
+      <div class="step" style="border-color:#7aa3e8"><div class="n">L1</div><h3>Observation</h3><p>What is in the scene.</p><q>How many strands are there in the braid?</q></div>
+      <div class="step" style="border-color:#5b8be0"><div class="n">L2</div><h3>Relations</h3><p>Order and relations between events.</p><q>Which strand does the blue strand cross first?</q></div>
+      <div class="step" style="border-color:#4170d6"><div class="n">L3</div><h3>Measurement</h3><p>Reading times, counts, and quantities.</p><q>What does the clock read when the blue and purple strands first cross?</q></div>
+      <div class="step" style="border-color:#2f57b8"><div class="n">L4</div><h3>Multi-step integration</h3><p>Combining many events over the clip.</p><q>Which strand passes over other strands the most times?</q></div>
+      <div class="step" style="border-color:#213f8c"><div class="n">L5</div><h3>Counterfactual</h3><p>What would change under an intervention.</p><q>If the first crossing had not happened, which strand would end up 3rd from the left?</q></div>
+    </div>
+  </div>
+</section>
+
+<section id="benchmark">
+  <div class="wrap">
+    <p class="eyebrow">How GRIP-V is built</p>
+    <h2>Ground truth from the simulator, not from annotators</h2>
+    <p class="lead">Each sub-benchmark is a seeded generator. The scene is simulated first; the video and the answers are both derived from the same scene state, and a separate validator re-derives every answer.</p>
+    <div class="pipe">
+      <div class="card"><h3>Simulate</h3><p>A seeded generator samples one of 185 scenario variants and simulates the scene state over time: collisions, flows, flashes, moves.</p></div>
+      <div class="card"><h3>Render</h3><p>Every frame is drawn from that state at 1280&times;720 and 24 fps, for at most 10 s. On-screen text is limited to a clock and needed scale labels.</p></div>
+      <div class="card"><h3>Ask</h3><p>Ten questions per clip on the five-rung ladder, with answers computed from the state. 81.1% require motion: event counts, order, timing.</p></div>
+      <div class="card"><h3>Validate</h3><p>A validator rebuilds all 100,000 clips and re-derives all 1M answers: zero mismatches. It flags all 120 answers corrupted on purpose.</p></div>
+    </div>
+
+    <h3 style="margin:40px 0 14px">Seven reasoning families</h3>
+    <div class="fams" id="fams"></div>
+  </div>
+</section>
+
+<section id="results">
+  <div class="wrap">
+    <p class="eyebrow">Results</p>
+    <h2>Eleven open-weight VLMs on 100,000 questions</h2>
+    <p class="lead">Strict accuracy on a fixed 100,000-question subset (250 clips per sub-benchmark). Adjusted accuracy rescales each cell so that the constant-answer baseline is 0 and a perfect score is 100. Click a column to sort.</p>
+    <div class="tablewrap"><table id="board"></table></div>
+    <p class="note">Params: total / active for mixture-of-experts models. 95% intervals from 1,000 clip-bootstrap resamples.</p>
+
+    <div class="two" style="margin-top:28px">
+      <div class="panel">
+        <h3>Accuracy falls up the ladder</h3>
+        <p class="sub">Strict accuracy by rung, all 100,000 questions.</p>
+        <div class="chart" id="ladderchart"></div>
+        <div class="legend" id="ladderlegend"></div>
+      </div>
+      <div class="panel" id="human">
+        <h3>Humans stay above 84% on every rung</h3>
+        <p class="sub">Three annotators on 7,720 of the evaluated questions, against the best model on each rung.</p>
+        <div class="chart" id="humanchart"></div>
+        <div class="legend">
+          <span><i style="background:var(--ok)"></i>Humans</span>
+          <span><i style="background:var(--accent)"></i>Best model</span>
+          <span><i style="background:#b8bcc6"></i>Constant-answer baseline</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="controls">
+  <div class="wrap">
+    <p class="eyebrow">Do models use motion?</p>
+    <h2>Two controls: remove the motion, scramble the order</h2>
+    <p class="lead">The same 10,000 questions, asked again with only the clip's final frame, or with the same 16 frames in a random order. A large drop means the model was using the motion.</p>
+    <div class="two">
+      <div class="panel">
+        <h3>Final frame only</h3>
+        <p class="sub">Adjusted accuracy with the full video vs. the last frame. Gain in points.</p>
+        <div id="ffbars"></div>
+        <div class="legend"><span><i style="background:var(--accent)"></i>Video</span><span><i style="background:#b8bcc6"></i>Final frame</span></div>
+      </div>
+      <div class="panel">
+        <h3>Shuffled frames</h3>
+        <p class="sub">Adjusted accuracy with 16 frames in order vs. shuffled. Gain in points.</p>
+        <div id="shbars"></div>
+        <div class="legend"><span><i style="background:var(--accent)"></i>In order</span><span><i style="background:#b8bcc6"></i>Shuffled</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="citation">
+  <div class="wrap">
+    <p class="eyebrow">Citation</p>
+    <h2>BibTeX</h2>
+    <div class="bib">
+      <button class="copy" data-target="bib1">Copy</button>
+<pre id="bib1">@article{gripv2026,
+  title  = {Watch, Don't Glance: A Procedurally Generated Video Benchmark
+            for Temporal Geometric and Physical Reasoning},
+  author = {Jawaid, Bilal and Hanif, Hamza and Uddin, Muhammad Maaz and
+            Zafar, Anas and Alqurashi, Inad and Zafar, Aizan and
+            Farooqui, Osama and Khan, Sheheryar and Sadak, Ferhat and
+            Raza, Shaina and Qureshi, Rizwan},
+  year   = {2026},
+  note   = {Under review}
+}</pre>
+    </div>
+    <p class="note" style="margin-top:18px">GRIP-V extends the image benchmark GRIP:</p>
+    <div class="bib" style="margin-top:8px">
+      <button class="copy" data-target="bib2">Copy</button>
+<pre id="bib2">@article{jawaid2026grip,
+  title   = {Geometric Parrots: Rule Absence vs. Rule Fragility in Spatial
+             and Physical Reasoning for Vision-Language Models},
+  author  = {Jawaid, Bilal and Hanif, Hamza and Uddin, Muhammad Maaz and
+             Zafar, Anas and Alqurashi, Inad and Zafar, Aizan and
+             Farooqui, Osama and Khan, Sheheryar and Sadak, Ferhat and
+             Raza, Shaina and Qureshi, Rizwan},
+  journal = {arXiv preprint arXiv:2610.16170},
+  year    = {2026}
+}</pre>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>GRIP-V &middot; Watch, Don't Glance</span>
+    <a href="#top">Back to top &uarr;</a>
+  </div>
+</footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
