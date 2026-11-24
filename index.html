@@ -35,10 +35,6 @@
     <div class="badge">Under review</div>
     <h1>Watch, <em>Don't</em> Glance</h1>
     <p class="sub">A procedurally generated video benchmark for temporal geometric and physical reasoning</p>
-    <div class="taxo">
-      <div class="wheel" id="wheel"></div>
-      <aside class="winfo" id="wheelinfo" aria-live="polite"></aside>
-    </div>
     <div class="authors">
       <span>Hamza Hanif<sup>1</sup></span><span>Muhammad Bilal Khan<sup>2</sup></span><span>Inam ur Rehman<sup>3</sup></span><span>Amgad Muneer<sup>4</sup></span><span>Bilal Jawaid<sup>5</sup></span><span>Muhammad Maaz Uddin<sup>6</sup></span><span>Anas Zafar<sup>4</sup></span><span>Shahzaib Abbas<sup>7</sup></span><span>Ahmad Abdullah Qamar<sup>8</sup></span><span>Aizan Zafar<sup>5</sup></span><span>Aman Chadha<sup>9</sup></span><span>Hong Yan<sup>10</sup></span><span>Rizwan Qureshi<sup>11</sup></span>
     </div>
@@ -78,23 +74,10 @@
     <p class="eyebrow">Abstract</p>
     <p>Robots and other physical-AI systems increasingly rely on vision-language models (VLMs) to perceive a scene and predict how it will evolve. Yet many questions in video benchmarks can be answered from a single frame, so a high score does not show that a model followed the scene over time. We introduce <b>GRIP-V</b>, the video version of GRIP: 40 procedurally generated sub-benchmarks in seven reasoning families, from mechanics and fluids to occlusion, agents, and rule tracking, with 2,500 clips per sub-benchmark and ten questions per clip (1 million questions). Every answer is computed from the simulated scene state and checked by a validator. Questions climb a five-rung ladder from observation through relations, measurement, and multi-step integration to counterfactual reasoning, and 81.1% are flagged as requiring motion. We evaluated eleven open-weight VLMs on a 100,000-question subset. The best model answers 55.6% of the questions, against a constant-answer baseline of 28.1%. Shown only the final frame, three of five tested models lose 14&ndash;15 points of baseline-adjusted accuracy, so they do use motion. Accuracy, however, falls by up to 37 points from the first rung to the last, eight of eleven models are within 6 points of the baseline on counterfactuals, and no model reliably detects injected rule violations. Current VLMs can follow how a scene unfolds, but not yet predict how it would change under an intervention or notice when it breaks the rules.</p>
     </div>
-    <figure class="abs-robot" aria-label="The GRIP-V robot">
-      <svg id="robotfig" viewBox="0 0 1296 1213" role="img" aria-label="The GRIP-V robot; its eyes follow the pointer">
-        <defs>
-          <filter id="rglow" x="-60%" y="-60%" width="220%" height="220%">
-            <feGaussianBlur stdDeviation="12" result="b"/>
-            <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-        </defs>
-        <image href="assets/robot_full.jpg" x="0" y="0" width="1296" height="1213"/>
-        <g class="reyes">
-          <path d="M466,343 Q514,264 563,333" fill="none" stroke="#1f7bff" stroke-width="34" stroke-linecap="round" filter="url(#rglow)" opacity="0.95"/>
-          <path d="M466,343 Q514,264 563,333" fill="none" stroke="#a6e0ff" stroke-width="18" stroke-linecap="round"/>
-          <path d="M675,304 Q726,216 778,296" fill="none" stroke="#1f7bff" stroke-width="34" stroke-linecap="round" filter="url(#rglow)" opacity="0.95"/>
-          <path d="M675,304 Q726,216 778,296" fill="none" stroke="#a6e0ff" stroke-width="18" stroke-linecap="round"/>
-        </g>
-      </svg>
-    </figure>
+    <div class="taxo">
+      <div class="wheel" id="wheel"></div>
+      <aside class="winfo" id="wheelinfo" aria-live="polite"></aside>
+    </div>
   </div>
 </section>
 
@@ -262,6 +245,5 @@
 <script src="assets/app.js"></script>
 <script src="assets/wheel-data.js"></script>
 <script src="assets/wheel.js"></script>
-<script src="assets/robot.js"></script>
 </body>
 </html>
